@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/orders"
+        android:icon="@mipmap/ic_launcher"
+        android:title="日间模式"/>
+
+    <item
+        android:id="@+id/collection"
+        android:icon="@mipmap/ic_launcher"
+        android:title="设置"/>
+
+    <item
+        android:id="@+id/about"
+        android:icon="@mipmap/ic_launcher"
+        android:title="关于我们"/>
+</menu>

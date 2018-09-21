@@ -1,6 +1,7 @@
 package com.kermitye.bookmaster.ui.activity
 
 import android.os.Bundle
+import com.gyf.barlibrary.BarHide
 import com.kermitye.baselib.ui.BaseActivity
 import com.kermitye.bookmaster.R
 import io.reactivex.Observable
@@ -16,7 +17,7 @@ import java.util.concurrent.TimeUnit
 class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        setView(R.layout.activity_splash)
 
         var disposable = Observable.timer(3, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe {
             startActivity<MainActivity>()
@@ -29,6 +30,13 @@ class SplashActivity : BaseActivity() {
             startActivity<MainActivity>()
             finish()
         }*/
+    }
+
+    override fun initImmersionBar() {
+        super.initImmersionBar()
+        mImmersionBar?.let {
+            it.hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR).init()   //隐藏导航栏
+        }
     }
 
     /*fun checkPermission() = RxPermissions(this).request( )

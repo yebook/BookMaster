@@ -46,6 +46,7 @@ dependencies {
     api "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     api "com.squareup.okhttp3:okhttp:$okhttp_version"
     api "com.google.code.gson:gson:$gson_version"
+    api "com.gyf.immersionbar:immersionbar:$immersionbar_version"
 }
 repositories {
     mavenCentral()
