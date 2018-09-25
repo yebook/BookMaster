@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.gyf.barlibrary.ImmersionBar
 import com.kermitye.baselib.widget.WaitDialog
+import me.yokeyword.fragmentation.SupportActivity
 
 /**
  * Created by kermitye
  * Date: 2018/8/28 17:42
  * Desc:
  */
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity : SupportActivity() {
 
     lateinit var mWaitDialog: WaitDialog
     var mImmersionBar : ImmersionBar? = null
