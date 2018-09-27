@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="title_size">22sp</dimen>
+    <dimen name="bookshelf_name">16sp</dimen>
+    <dimen name="hint_txt">12sp</dimen>
 </resources>

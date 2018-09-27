@@ -8,5 +8,13 @@ import android.app.Application
  * Desc:
  */
 class MyApp : Application() {
+    companion object {
+        lateinit var instance: MyApp
+        fun getString(resId: Int) = instance.getString(resId)
+    }
 
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
+    }
 }

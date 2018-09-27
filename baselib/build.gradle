@@ -48,6 +48,9 @@ dependencies {
     api "com.google.code.gson:gson:$gson_version"
     api "com.gyf.immersionbar:immersionbar:$immersionbar_version"
     api "me.yokeyword:fragmentation:$fragmentation_version"
+    api "com.github.bumptech.glide:glide:$glide_version"
+    api "jp.wasabeef:glide-transformations:$glide_transformations_version"
+    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$BaseRecyclerViewAdapterHelper_version"
 }
 repositories {
     mavenCentral()
