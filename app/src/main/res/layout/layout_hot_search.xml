@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="8dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="热门搜索"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        />
+
+    <me.gujun.android.taggroup.TagGroup
+        android:id="@+id/mTgHot"
+        style="@style/TagGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:atg_isAppendMode="false"
+        app:atg_borderColor="@android:color/darker_gray"
+        app:atg_verticalSpacing="15dp"
+        app:atg_horizontalSpacing="8dp"
+        app:atg_verticalPadding="8dp"
+        app:atg_textColor="@color/black">
+    </me.gujun.android.taggroup.TagGroup>
+
+</LinearLayout>

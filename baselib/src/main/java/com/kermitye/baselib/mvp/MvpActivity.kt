@@ -10,9 +10,26 @@ import org.jetbrains.anko.toast as showToast
  * Date: 2018/8/28 18:13
  * Desc:
  */
-open class MvpActivity<P: BasePresenter<*, *>> : BaseActivity(), IBaseView {
+abstract class MvpActivity<P: BasePresenter<*, *>> : BaseActivity(), IBaseView {
 
     lateinit var mPresenter: P
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        bindMV()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.detachMV()
+    }
+
+    fun bindMV() {
+        mPresenter = initPresenter()
+    }
+
+    abstract fun initPresenter(): P
+    abstract fun attachMV()
 
     override fun toast(msg: String, isLong: Boolean) {
         if (isLong)

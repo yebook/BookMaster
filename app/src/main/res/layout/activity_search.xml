@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/themColor"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/mTopView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/mIvBack"
+                android:layout_width="@dimen/ic_size"
+                android:layout_height="@dimen/ic_size"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/ic_back" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/mEtKeyWord"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="输入书名或作者名"
+                android:textColor="@color/white"
+                android:textSize="@dimen/bookshelf_name"
+                android:lines="1" />
+
+            <ImageView
+                android:id="@+id/mIvSearch"
+                android:layout_width="@dimen/ic_size"
+                android:layout_height="@dimen/ic_size"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_search" />
+
+        </LinearLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/layout_hot_search" />
+
+        <include
+            layout="@layout/layout_auto_complete"
+            android:visibility="gone" />
+
+        <include
+            layout="@layout/layout_search_list"
+            android:visibility="gone" />
+
+    </FrameLayout>
+</LinearLayout>

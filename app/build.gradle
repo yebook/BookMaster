@@ -34,7 +34,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':baselib')
-
-
+    implementation 'com.getbase:floatingactionbutton:1.10.1'
+    implementation 'me.gujun.android.taggroup:library:1.4@aar'
 
 }

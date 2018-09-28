@@ -9,8 +9,7 @@ abstract class BasePresenter<M: IBaseModel, V: IBaseView> {
     var mModel: M? = null
     var mView: V? = null
 
-
-    fun atttachMV(v: V) {
+    fun attachMV(v: V) {
         this.mModel = getModel()
         this.mView = v
         this.onStart()

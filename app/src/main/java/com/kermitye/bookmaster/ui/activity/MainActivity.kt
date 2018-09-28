@@ -18,8 +18,10 @@ import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header_layout.view.*
 import me.yokeyword.fragmentation.ISupportFragment
+import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +40,14 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//        when(item?.itemId) {
-//            R.id.action_search ->
-//        }
+        when(item?.itemId) {
+            R.id.action_search -> {
+                startActivity<SearchActivity>()
+                return true
+            }
+        }
         return super.onOptionsItemSelected(item)
     }
-
 
     fun initView() {
         mNvMenu.setItemIconTintList(null)   //侧滑菜单中的图标显示原色
@@ -56,7 +60,6 @@ class MainActivity : BaseActivity() {
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-
 
         var titles = arrayListOf("书架", "排行榜")
         var datas = arrayListOf<Fragment>()
@@ -74,6 +77,5 @@ class MainActivity : BaseActivity() {
 
         var mRequestOptions = RequestOptions.circleCropTransform()//.diskCacheStrategy(DiskCacheStrategy.NONE)
         Glide.with(MyApp.instance).load(R.mipmap.head).apply(mRequestOptions).into(mNvMenu.getHeaderView(0).mIvHead)
-
     }
 }
