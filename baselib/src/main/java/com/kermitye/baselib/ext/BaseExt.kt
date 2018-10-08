@@ -29,7 +29,7 @@ object BaseExt {
 
 //---------------------------RX EXT-------------------------------------------
 
-fun <T> Observable<T>.excute(subscriber: HttpObserver<T>, lifecycleProvider: LifecycleProvider<*>) {
+fun <T> Observable<T>.excute(subscriber: HttpObserver<T>, lifecycleProvider: LifecycleProvider<*>? = null) {
     this.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 //            .compose(lifecycleProvider.bindToLifecycle())
