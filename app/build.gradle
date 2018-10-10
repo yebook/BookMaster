@@ -44,4 +44,6 @@ dependencies {
 
     implementation "com.jakewharton.rxbinding2:rxbinding:$rxbinding_version"
 
+    implementation 'com.github.MZCretin:ExpandableTextView:v1.5.1'
+
 }

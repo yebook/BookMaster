@@ -4,9 +4,14 @@ import android.content.Context
 import android.net.Uri
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.kermitye.bookmaster.MyApp
 import com.kermitye.bookmaster.R
+import com.kermitye.bookmaster.R.id.mIvHead
 import com.kermitye.bookmaster.ext.option
+import jp.wasabeef.glide.transformations.BlurTransformation
 
 /**
  * Created by kermitye on 2018/10/8 16:13
@@ -30,6 +35,16 @@ object ImageManager {
                 .into(imageView)
     }
 
+    fun displayImageToBlur(url: String, imageView: ImageView) {
+        Glide.with(MyApp.instance).load(url)
+                .apply(bitmapTransform(BlurTransformation(25, 20)))  //radius设置模糊度(0.0-25.0之间)， sampling设置图片的缩放比例
+                .into(imageView)
+    }
+
+    fun displayImageToCir(url: String, imageView: ImageView) {
+        Glide.with(MyApp.instance).load(url).apply(RequestOptions.bitmapTransform(CircleCrop())).into(imageView)
+    }
+
     fun displayImage(url: String, imageView: ImageView, defResId: Int) {
         Glide.with(MyApp.instance.getApplicationContext()).load(url)
                 .option(R.mipmap.imag_loading, R.mipmap.image_error)
@@ -39,6 +54,7 @@ object ImageManager {
     fun displayImage(uri: Uri, imageView: ImageView) {
         Glide.with(MyApp.instance).load(uri).option(R.mipmap.imag_loading, R.mipmap.image_error).into(imageView)
     }
+
 
     /**
      * 清除缓存

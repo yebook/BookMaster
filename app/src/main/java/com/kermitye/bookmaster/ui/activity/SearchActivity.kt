@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.layout_auto_complete.*
 import kotlinx.android.synthetic.main.layout_hot_search.*
 import kotlinx.android.synthetic.main.layout_search_list.*
+import org.jetbrains.anko.startActivity
 import java.util.concurrent.TimeUnit
 
 /**
@@ -75,6 +76,10 @@ class SearchActivity : MvpActivity<SearchPresenterImpl>(), SearchContract.ISearc
         mRvSearchBooks.layoutManager = LinearLayoutManager(this)
         mRvSearchBooks.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         mRvSearchBooks.adapter = mSearchBooksAdapter
+        mSearchBooksAdapter.setOnItemClickListener { adapter, view, position ->
+            startActivity<BookDetailActivity>("id" to mSearchBooks.get(position)._id)
+        }
+
 
         RxTextView.textChanges(mEtKeyWord)
                 .debounce(1, TimeUnit.SECONDS).skip(1)

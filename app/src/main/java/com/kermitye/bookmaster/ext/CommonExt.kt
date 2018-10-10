@@ -1,6 +1,7 @@
 package com.kermitye.bookmaster.ext
 
 import android.graphics.Color
+import android.support.v7.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.RequestOptions
@@ -16,3 +17,12 @@ inline fun RequestBuilder<*>.option(placeResourceId: Int = -1, errorResourceId: 
         it.error(errorResourceId)
     it
 })
+
+fun AppCompatActivity.getStatusHeight(): Int {
+    var height = 0
+    val resourceId = applicationContext.resources.getIdentifier("status_bar_height", "dimen", "android")
+    if (resourceId > 0) {
+        height = applicationContext.resources.getDimensionPixelSize(resourceId)
+    }
+    return height
+}

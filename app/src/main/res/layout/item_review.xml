@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+
+    <ImageView
+        android:id="@+id/mIvUserHead"
+        android:layout_width="45dp"
+        android:layout_height="45dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="3dp"
+        >
+
+        <TextView
+            android:id="@+id/mTvNickName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:textSize="@dimen/hint_txt" />
+
+        <TextView
+            android:id="@+id/mTvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="@dimen/bookshelf_name" />
+
+        <TextView
+            android:id="@+id/mTvContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="3" />
+    </LinearLayout>
+</LinearLayout>
