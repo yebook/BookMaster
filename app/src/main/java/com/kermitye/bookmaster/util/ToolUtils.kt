@@ -1,5 +1,7 @@
 package com.kermitye.bookmaster.util
 
+import android.graphics.Color
+import android.support.annotation.ColorInt
 import com.kermitye.baselib.util.LogUtil
 import java.text.DateFormat
 import java.text.ParseException
@@ -51,4 +53,14 @@ object ToolUtils {
         }
         return date
     }
+
+    fun isLightColor(color: Int): Boolean {
+        val darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255
+        return if (darkness < 0.5) {
+            true // It's a light color
+        } else {
+            false // It's a dark color
+        }
+    }
+
 }

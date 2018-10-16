@@ -22,6 +22,7 @@ abstract class MvpFragment<P : BasePresenter<*, *>> : BaseFragment(), IBaseView 
 
     fun bindMV() {
         mPresenter = initPresenter()
+        attachMV()
     }
 
     override fun onDestroy() {

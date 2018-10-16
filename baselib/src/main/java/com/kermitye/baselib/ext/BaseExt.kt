@@ -15,6 +15,8 @@ import com.trello.rxlifecycle2.LifecycleProvider
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.reactivestreams.Subscriber
+import org.reactivestreams.Subscription
 import kotlin.reflect.KProperty
 
 /**
@@ -29,11 +31,12 @@ object BaseExt {
 
 //---------------------------RX EXT-------------------------------------------
 
-fun <T> Observable<T>.excute(subscriber: HttpObserver<T>, lifecycleProvider: LifecycleProvider<*>? = null) {
+fun <T> Observable<T>.excute(subscriber: HttpObserver<T>, lifecycleProvider: LifecycleProvider<*>? = null) = apply {
     this.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 //            .compose(lifecycleProvider.bindToLifecycle())
             .subscribe(subscriber)
+
 }
 
 /*

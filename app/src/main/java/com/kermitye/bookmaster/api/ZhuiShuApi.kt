@@ -29,4 +29,10 @@ interface ZhuiShuApi {
 
     @GET("/post/review/by-book?sort=updated")
     fun getBookReview(@Query("book") bookid: String, @Query("start") start: Int = 0, @Query("limit") limit: Int = 2): Observable<BookReviewBean>
+
+    @GET("/ranking/gender")
+    fun getRanking() : Observable<RankingBean>
+
+    @GET("/ranking/{rankingid}")
+    fun getRankingBooks(@Path("rankingid") rankingId: String): Observable<RankingBookBean>
 }

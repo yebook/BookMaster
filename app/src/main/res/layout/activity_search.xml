@@ -28,18 +28,37 @@
                 android:layout_marginLeft="5dp"
                 android:src="@drawable/ic_back" />
 
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/mEtKeyWord"
+            <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_weight="1"
-                android:background="@null"
-                android:hint="输入书名或作者名"
-                android:textColor="@color/white"
-                android:textSize="@dimen/bookshelf_name"
-                android:lines="1" />
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/mEtKeyWord"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="输入书名或作者名"
+                    android:lines="1"
+                    android:singleLine="true"
+                    android:paddingRight="30dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/bookshelf_name" />
+
+                <ImageView
+                    android:id="@+id/mIvClean"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_clean"
+                    android:layout_gravity="center_vertical|end"
+                    android:visibility="gone"
+                    />
+
+            </FrameLayout>
 
             <ImageView
                 android:id="@+id/mIvSearch"
@@ -52,6 +71,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
+        android:id="@+id/mSl"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

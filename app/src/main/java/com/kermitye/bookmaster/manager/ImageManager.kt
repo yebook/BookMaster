@@ -1,12 +1,15 @@
 package com.kermitye.bookmaster.manager
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.net.Uri
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.RequestOptions.bitmapTransform
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.kermitye.bookmaster.MyApp
 import com.kermitye.bookmaster.R
 import com.kermitye.bookmaster.R.id.mIvHead
@@ -40,6 +43,7 @@ object ImageManager {
                 .apply(bitmapTransform(BlurTransformation(25, 20)))  //radius设置模糊度(0.0-25.0之间)， sampling设置图片的缩放比例
                 .into(imageView)
     }
+
 
     fun displayImageToCir(url: String, imageView: ImageView) {
         Glide.with(MyApp.instance).load(url).apply(RequestOptions.bitmapTransform(CircleCrop())).into(imageView)

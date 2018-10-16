@@ -57,6 +57,7 @@ class SearchActivity : MvpActivity<SearchPresenterImpl>(), SearchContract.ISearc
 
     fun initView() {
         mIvBack.setOnClickListener { onBackPressedSupport() }
+        mIvClean.setOnClickListener { mEtKeyWord.setText("") }
         showData(TYPE_NONE)
         mTgHot.setOnTagClickListener {
             mJumpChange = true
@@ -80,11 +81,11 @@ class SearchActivity : MvpActivity<SearchPresenterImpl>(), SearchContract.ISearc
             startActivity<BookDetailActivity>("id" to mSearchBooks.get(position)._id)
         }
 
-
         RxTextView.textChanges(mEtKeyWord)
-                .debounce(1, TimeUnit.SECONDS).skip(1)
+                .debounce(300, TimeUnit.MILLISECONDS).skip(1)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
+                    mIvClean.setVisible(it.length != 0)
                     if (mJumpChange) {
                         mJumpChange = false
                         return@subscribe
@@ -92,8 +93,11 @@ class SearchActivity : MvpActivity<SearchPresenterImpl>(), SearchContract.ISearc
                     mPresenter.getKeyWords(it.toString())
                 }
 
-        mIvSearch.setOnClickListener { search() }
+        mIvSearch.setOnClickListener {
+            search()
+        }
     }
+
 
     override fun updateHotWord(data: List<String>) {
         showData(TYPE_NONE)
@@ -128,6 +132,7 @@ class SearchActivity : MvpActivity<SearchPresenterImpl>(), SearchContract.ISearc
     }
 
     fun search() {
+        hindKeyBoard(mEtKeyWord)
         mPresenter.getSearchBooks(mEtKeyWord.text.toString())
     }
 

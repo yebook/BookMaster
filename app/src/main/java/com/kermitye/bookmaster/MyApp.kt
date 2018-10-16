@@ -1,6 +1,7 @@
 package com.kermitye.bookmaster
 
 import android.app.Application
+import com.kermitye.bookmaster.util.CrashExceptionHandler
 
 /**
  * Created by kermitye
@@ -16,5 +17,6 @@ class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        CrashExceptionHandler.instance.init()
     }
 }

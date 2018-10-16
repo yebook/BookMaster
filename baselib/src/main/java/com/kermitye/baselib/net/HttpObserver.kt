@@ -2,6 +2,8 @@ package com.kermitye.baselib.net
 
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
+import org.reactivestreams.Subscriber
+import org.reactivestreams.Subscription
 
 /**
  * Created by kermitye

@@ -20,7 +20,6 @@ data class KeyWordsBean(
     val ok: Boolean
 )
 
-
 data class SearchBooksBean(
     val books: List<SearchBook>?,
     val total: Int?,
@@ -142,4 +141,78 @@ data class Helpful(
     val total: Int,
     val yes: Int,
     val no: Int
+)
+
+
+data class RankingBean(
+    val male: List<Male>,
+    val picture: List<Picture>,
+    val epub: List<Epub>,
+    val female: List<Female>,
+    val ok: Boolean
+)
+
+data class Female(
+    val _id: String,
+    val title: String,
+    val cover: String,
+    val collapse: Boolean,
+    val monthRank: String,
+    val totalRank: String,
+    val shortTitle: String
+)
+
+data class Epub(
+    val _id: String,
+    val title: String,
+    val cover: String,
+    val collapse: Boolean,
+    val shortTitle: String
+)
+
+data class Male(
+    val _id: String,
+    val title: String,
+    val cover: String,
+    val collapse: Boolean,
+    val monthRank: String,
+    val totalRank: String,
+    val shortTitle: String
+)
+
+data class Picture(
+    val _id: String,
+    val title: String,
+    val cover: String,
+    val collapse: Boolean,
+    val shortTitle: String
+)
+
+
+data class RankingBookBean(
+    val ranking: Ranking,
+    val ok: Boolean
+)
+
+data class Ranking(
+    val _id: String,
+    val updated: String,
+    val title: String,
+    val tag: String,
+    val cover: String,
+    val icon: String,
+    val __v: Int,
+    val monthRank: String,
+    val totalRank: String,
+    val shortTitle: String,
+    val created: String,
+    val biTag: String,
+    val isSub: Boolean,
+    val collapse: Boolean,
+    val new: Boolean,
+    val gender: String,
+    val priority: Int,
+    val books: List<SearchBook>,
+    val id: String,
+    val total: Int
 )

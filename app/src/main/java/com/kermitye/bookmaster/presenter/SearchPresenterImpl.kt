@@ -7,6 +7,9 @@ import com.kermitye.bookmaster.model.SearchModel
 import com.kermitye.bookmaster.model.bean.HotWordBean
 import com.kermitye.bookmaster.model.bean.KeyWordsBean
 import com.kermitye.bookmaster.model.bean.SearchBooksBean
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
 
 /**
  * Created by kermitye on 2018/9/28 16:14
@@ -16,6 +19,8 @@ class SearchPresenterImpl : SearchContract.SearchPresenter() {
     companion object {
         fun newInstance(): SearchPresenterImpl = SearchPresenterImpl()
     }
+
+    var mSearchDisposable: Disposable? = null
 
     override fun getModel(): SearchContract.ISearchModel = SearchModel.newInstance()
 
@@ -37,7 +42,12 @@ class SearchPresenterImpl : SearchContract.SearchPresenter() {
     }
 
     fun getKeyWords(query: String) {
-        mModel?.getKeyWrods(query)?.excute(object : HttpObserver<KeyWordsBean>() {
+       mModel?.getKeyWrods(query)?.excute(object : HttpObserver<KeyWordsBean>() {
+
+            override fun onSubscribe(d: Disposable) {
+                mSearchDisposable = d
+            }
+
             override fun onSuccess(t: KeyWordsBean?) {
                 t?.let {
                     mView?.updateKeyWords(it.keywords)
@@ -50,10 +60,15 @@ class SearchPresenterImpl : SearchContract.SearchPresenter() {
     }
 
     fun getSearchBooks(query: String) {
+        if (mSearchDisposable != null && !(mSearchDisposable?.isDisposed ?: true)) {
+            mSearchDisposable?.dispose()
+        }
+
         mModel?.getSearchBooks(query)?.excute(object : HttpObserver<SearchBooksBean>() {
             override fun onSuccess(t: SearchBooksBean?) {
                 t?.let { mView?.updateSearchBooks(it.books ?: arrayListOf()) }
             }
+
             override fun onError(code: Int, msg: String?) {
             }
         })
