@@ -22,10 +22,13 @@ import com.kermitye.bookmaster.manager.ImageManager
 import com.kermitye.bookmaster.model.bean.BookDetailBean
 import com.kermitye.bookmaster.model.bean.Review
 import com.kermitye.bookmaster.presenter.BookDetailPresenterImpl
+import com.kermitye.bookmaster.ui.widget.StateLayout
+import com.kermitye.bookmaster.util.SpUtils
 import com.kermitye.bookmaster.util.ToolUtils
 import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.android.synthetic.main.activity_book_detail.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.startActivity
 
 /**
  * Created by kermitye on 2018/10/8 18:53
@@ -34,17 +37,13 @@ class BookDetailActivity : MvpActivity<BookDetailPresenterImpl>(), BookDetailCon
 
     var mReviews = arrayListOf<Review>()
     val mReviewAdapter by lazy { BookReviewAdapter(mReviews) }
+    lateinit var bookId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setView(R.layout.activity_book_detail)
+        setView(R.layout.activity_book_detail, R.id.mTopView)
         initView()
         initListener()
-    }
-
-    override fun initImmersionBar() {
-        super.initImmersionBar()
-        mImmersionBar?.let { it.statusBarView(mTopView).init() }
     }
 
     override fun initPresenter(): BookDetailPresenterImpl = BookDetailPresenterImpl.newInstance()
@@ -54,7 +53,12 @@ class BookDetailActivity : MvpActivity<BookDetailPresenterImpl>(), BookDetailCon
     }
 
     fun initView() {
-        var bookId = intent.getStringExtra("id")
+        mSl.setConfig(StateLayout.StateLayoutConfig.newInstance()
+                .setEmptyLayout(R.layout.layout_empty)
+                .setErrorLayout(R.layout.layout_error)
+                .setLoadingLayout(R.layout.layout_loading))
+        mSl.showView(StateLayout.TYPE_LOADING)
+        bookId = intent.getStringExtra("id")
         if (bookId.isNullOrEmpty()) {
             toast("获取书籍错误")
             return
@@ -96,12 +100,13 @@ class BookDetailActivity : MvpActivity<BookDetailPresenterImpl>(), BookDetailCon
             mLlHead.setBackgroundColor(if (alpha == 0f) Color.TRANSPARENT else Color.parseColor(colorValue))
         }
 
-        mLlCatalog.setOnClickListener { toast("进入目录") }
+        mLlCatalog.setOnClickListener { startActivity<CatalogActivity>("id" to bookId) }
         mTvAllReview.setOnClickListener { toast("进入评论") }
     }
 
     override fun updateData(data: BookDetailBean?) {
-        data?.let {
+        if(data != null) {
+            mSl.showView(StateLayout.TYPE_CONTENT)
             mTvTitle.text = data.title
             mTvBookName.text = data.title
             mTvAuthor.text = data.author
@@ -127,14 +132,14 @@ class BookDetailActivity : MvpActivity<BookDetailPresenterImpl>(), BookDetailCon
                                 }
                             }
                         })
-
-
             }
             mTvUpdated.text = ToolUtils.getShortTime(data.updated?.replace(Regex("T|Z"), " ") ?: "")
             mTvFollower.text = "追书人数\n${data.latelyFollower}"
             mTvRetentionRatio.text = "读者留存率\n${data.retentionRatio}"
             mTvScore.text = "评分\n${data.rating?.score}"
             mTvLastChapter.text = data.lastChapter
+        } else {
+            mSl.showView(StateLayout.TYPE_EMPTY)
         }
     }
 

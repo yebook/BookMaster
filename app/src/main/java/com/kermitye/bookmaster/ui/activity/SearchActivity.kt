@@ -7,12 +7,15 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import com.kermitye.baselib.ext.setVisible
 import com.kermitye.baselib.mvp.MvpActivity
 import com.kermitye.baselib.mvp.MvpFragment
+import com.kermitye.baselib.util.LogUtil
 import com.kermitye.bookmaster.R
 import com.kermitye.bookmaster.adapter.KeyWordsAdapter
 import com.kermitye.bookmaster.adapter.SearchBooksAdapter
+import com.kermitye.bookmaster.adapter.SearchHistoryAdapter
 import com.kermitye.bookmaster.contract.SearchContract
 import com.kermitye.bookmaster.model.bean.SearchBook
 import com.kermitye.bookmaster.presenter.SearchPresenterImpl
+import com.kermitye.bookmaster.util.SpUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.layout_auto_complete.*
@@ -37,16 +40,13 @@ class SearchActivity : MvpActivity<SearchPresenterImpl>(), SearchContract.ISearc
     var mSearchBooks = arrayListOf<SearchBook>()
     val mSearchBooksAdapter by lazy { SearchBooksAdapter(mSearchBooks) }
     var mJumpChange = false
+    val mSearchHistory by lazy { SpUtils.getSearchHistory() }
+    val mKeyHistoryAdapter by lazy { SearchHistoryAdapter(mSearchHistory) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setView(R.layout.activity_search)
+        setView(R.layout.activity_search, R.id.mTopView)
         initView()
-    }
-
-    override fun initImmersionBar() {
-        super.initImmersionBar()
-        mImmersionBar?.let { it.statusBarView(mTopView).init() }
     }
 
     override fun initPresenter(): SearchPresenterImpl = SearchPresenterImpl.newInstance()
@@ -58,6 +58,12 @@ class SearchActivity : MvpActivity<SearchPresenterImpl>(), SearchContract.ISearc
     fun initView() {
         mIvBack.setOnClickListener { onBackPressedSupport() }
         mIvClean.setOnClickListener { mEtKeyWord.setText("") }
+        mTvCleanHistory.setOnClickListener {
+            mTvCleanHistory.setVisible(false)
+            mSearchHistory.clear()
+            SpUtils.setSearchHistory(mSearchHistory)
+            mKeyHistoryAdapter.notifyDataSetChanged()
+        }
         showData(TYPE_NONE)
         mTgHot.setOnTagClickListener {
             mJumpChange = true
@@ -71,6 +77,18 @@ class SearchActivity : MvpActivity<SearchPresenterImpl>(), SearchContract.ISearc
         mKeyWordsAdapter.setOnItemClickListener { adapter, view, position ->
             mJumpChange = true
             mEtKeyWord.setText(mKeyWords.get(position))
+            search()
+        }
+
+
+        mRvSearchHistory.layoutManager = LinearLayoutManager(this)
+        mRvSearchHistory.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        mRvSearchHistory.adapter = mKeyHistoryAdapter
+        mTvCleanHistory.setVisible(mSearchHistory.size > 0)
+
+        mKeyHistoryAdapter.setOnItemClickListener { adapter, view, position ->
+            mJumpChange = true
+            mEtKeyWord.setText(mSearchHistory.get(position))
             search()
         }
 
@@ -132,8 +150,20 @@ class SearchActivity : MvpActivity<SearchPresenterImpl>(), SearchContract.ISearc
     }
 
     fun search() {
+        if (mEtKeyWord.text.isNullOrEmpty()) {
+            toast("请输入搜索内容")
+            return
+        }
+        val keyWord = mEtKeyWord.text.toString().trim()
+        if (mSearchHistory.contains(keyWord)) {
+           mSearchHistory.remove(keyWord)
+        }
+        mSearchHistory.add(0, keyWord)
+        mTvCleanHistory.setVisible(mSearchHistory.size > 0)
+        SpUtils.setSearchHistory(mSearchHistory)
+        mKeyHistoryAdapter.notifyDataSetChanged()
         hindKeyBoard(mEtKeyWord)
-        mPresenter.getSearchBooks(mEtKeyWord.text.toString())
+        mPresenter.getSearchBooks(keyWord)
     }
 
     fun showData(type: Int) {

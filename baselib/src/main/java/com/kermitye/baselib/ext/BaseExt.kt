@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.kermitye.baselib.net.BaseConvert
 import com.kermitye.baselib.net.BaseResp
 import com.kermitye.baselib.net.HttpObserver
@@ -62,7 +64,6 @@ fun View.setVisible(visible: Boolean) {
 }
 
 
-
 //---------------------------SP EXT-------------------------------------------
 
 class Preference<T>(private val context: Context, val name: String, val default: T) {
@@ -73,7 +74,7 @@ class Preference<T>(private val context: Context, val name: String, val default:
     operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) = putSharedPreferences(name, value)
 
     private fun putSharedPreferences(name: String, value: T) = with(prefs.edit()) {
-        when(value) {
+        when (value) {
             is Int -> putInt(name, value)
             is Float -> putFloat(name, value)
             is Long -> putLong(name, value)
@@ -83,8 +84,8 @@ class Preference<T>(private val context: Context, val name: String, val default:
         }.apply()
     }
 
-    private fun getSharedPreferences(name:String, default: T): T = with(prefs) {
-        val res: Any = when(default) {
+    private fun getSharedPreferences(name: String, default: T): T = with(prefs) {
+        val res: Any = when (default) {
             is Int -> getInt(name, default)
             is Float -> getFloat(name, default)
             is Long -> getLong(name, default)

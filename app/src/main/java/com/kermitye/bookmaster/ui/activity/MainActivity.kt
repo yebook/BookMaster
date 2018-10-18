@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.gyf.barlibrary.ImmersionBar
 import com.kermitye.bookmaster.MyApp
 import com.kermitye.bookmaster.R
 import com.kermitye.bookmaster.adapter.HomePageAdapter
@@ -25,14 +26,14 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setView(R.layout.activity_main)
+        setView(R.layout.activity_main, R.id.mTopView)
         initView()
     }
 
-    override fun initImmersionBar() {
+   /* override fun initImmersionBar() {
         super.initImmersionBar()
         mImmersionBar?.let { it.statusBarView(mTopView).init() }
-    }
+    }*/
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.bar_menu, menu)

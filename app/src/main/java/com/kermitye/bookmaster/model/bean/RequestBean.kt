@@ -216,3 +216,42 @@ data class Ranking(
     val id: String,
     val total: Int
 )
+
+
+data class AtocBean(
+    val _id: String,
+    val source: String,
+    val name: String,
+    val link: String,
+    val book: String,
+    val chapters: List<Chapter>?,
+    val updated: String,
+    val host: String
+)
+
+data class Chapter(
+    val id: String,
+    val title: String,
+    val link: String,
+    val chapterCover: String,
+    val totalpage: Int,
+    val partsize: Int,
+    val order: Int,
+    val currency: Int,
+    val unreadble: Boolean,
+    val isVip: Boolean
+)
+
+
+data class AtocSourceBean(
+    val _id: String,
+    val source: String,
+    val name: String,
+    val link: String,
+    val lastChapter: String,
+    val isCharge: Boolean,
+    val chaptersCount: Int,
+    val updated: String,
+    val starting: Boolean,
+    val host: String
+)

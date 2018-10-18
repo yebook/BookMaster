@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.bumptech.glide.Glide.init
 import com.gyf.barlibrary.ImmersionBar
 import com.kermitye.baselib.widget.WaitDialog
 import me.yokeyword.fragmentation.SupportActivity
@@ -27,18 +28,27 @@ open class BaseActivity : SupportActivity() {
     override fun onDestroy() {
         super.onDestroy()
         if (mImmersionBar != null)
-            mImmersionBar?.destroy();
+            mImmersionBar?.destroy()
     }
 
-    protected fun setView(resId: Int) {
+    protected fun setView(resId: Int, topView: Int = -1) {
         setContentView(resId)
-        initImmersionBar()
+        mImmersionBar = ImmersionBar.with(this)
+        if (topView != -1) {
+            mImmersionBar?.statusBarView(topView)?.init()
+        } else {
+            mImmersionBar?.init()
+        }
     }
 
-    open protected fun initImmersionBar() {
+
+    open protected fun initImmersionBar(topView: View? = null) {
         //在BaseActivity里初始化
         mImmersionBar = ImmersionBar.with(this)
         mImmersionBar?.init()
+        if (topView != null) {
+            mImmersionBar?.let { it.statusBarView(topView).init() }
+        }
     }
 
     fun showWait(msg: String = "") = mWaitDialog.show(msg)

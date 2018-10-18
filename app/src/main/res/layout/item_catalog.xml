@@ -2,24 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="15dp"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:padding="10dp"
     >
-    <ImageView
-        android:id="@+id/mIvIcon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_search_black"
-        android:layout_margin="5dp"
-        />
+
     <TextView
-        android:id="@+id/mTvTxt"
-        android:layout_width="wrap_content"
+        android:id="@+id/mTvChapter"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
+        android:singleLine="true"
         android:lines="1"
         android:ellipsize="end"
-        android:text="王不留行"
         android:textSize="@dimen/bookshelf_name"
+        android:text="第一章 xxxxxx"
         />
+
+    <ImageView
+        android:id="@+id/mIvVip"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@mipmap/ic_vip"
+        android:visibility="gone"
+        />
+
 </LinearLayout>

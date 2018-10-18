@@ -18,11 +18,12 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setView(R.layout.activity_splash)
-
+        mImmersionBar?.let { it.hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR).init() }  //隐藏导航栏
         var disposable = Observable.timer(3, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe {
             startActivity<MainActivity>()
             finish()
         }
+
 
         /*mTvJump.setOnClickListener {
             if (!disposable.isDisposed)
@@ -30,13 +31,6 @@ class SplashActivity : BaseActivity() {
             startActivity<MainActivity>()
             finish()
         }*/
-    }
-
-    override fun initImmersionBar() {
-        super.initImmersionBar()
-        mImmersionBar?.let {
-            it.hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR).init()   //隐藏导航栏
-        }
     }
 
     /*fun checkPermission() = RxPermissions(this).request( )

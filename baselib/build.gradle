@@ -5,10 +5,8 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 27
 
-
-
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 23
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -40,6 +38,7 @@ dependencies {
     api "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     api "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
     api "com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:$rxlifecycle_version"
+    api "com.trello.rxlifecycle2:rxlifecycle-components:$rxlifecycle_version"
     api "com.squareup.retrofit2:retrofit:$retrofit_version"
     api "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     api "com.squareup.retrofit2:converter-gson:$retrofit_version"

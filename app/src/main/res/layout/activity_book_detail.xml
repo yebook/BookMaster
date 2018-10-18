@@ -1,313 +1,312 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.kermitye.bookmaster.ui.widget.StateLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mSl"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/mScrollView"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <LinearLayout
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/mScrollView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/mIvBookHeadBg"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:scaleType="fitXY" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="?actionBarSize"
-                        android:orientation="horizontal"
-                        android:paddingTop="20dp"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        >
+                        android:layout_height="wrap_content">
 
                         <ImageView
-                            android:id="@+id/mIvBookHead"
-                            android:layout_width="90dp"
-                            android:layout_height="110dp"
-                            android:src="@mipmap/image_error" />
+                            android:id="@+id/mIvBookHeadBg"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:scaleType="fitXY" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="10dp"
-                            android:orientation="vertical">
+                            android:layout_marginTop="?actionBarSize"
+                            android:orientation="horizontal"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="20dp"
+                            android:paddingRight="10dp">
 
-                            <TextView
-                                android:id="@+id/mTvBookName"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:ellipsize="end"
-                                android:lines="1"
-                                android:text="书名"
-                                android:textSize="@dimen/title_size" />
+                            <ImageView
+                                android:id="@+id/mIvBookHead"
+                                android:layout_width="90dp"
+                                android:layout_height="110dp"
+                                android:src="@mipmap/image_error" />
 
-                            <TextView
-                                android:id="@+id/mTvAuthor"
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:ellipsize="end"
-                                android:lines="1"
-                                android:text="作者"
-                                android:textColor="@color/link" />
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/mTvInfo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:ellipsize="end"
-                                android:lines="1"
-                                android:text="东方武侠 | 666万字 | 连载" />
-                            <TextView
-                                android:id="@+id/mTvUpdated"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:ellipsize="end"
-                                android:lines="1"
-                                android:text="13小时前"
-                                />
+                                <TextView
+                                    android:id="@+id/mTvBookName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:lines="1"
+                                    android:text="书名"
+                                    android:textSize="@dimen/title_size" />
+
+                                <TextView
+                                    android:id="@+id/mTvAuthor"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:ellipsize="end"
+                                    android:lines="1"
+                                    android:text="作者"
+                                    android:textColor="@color/link" />
+
+                                <TextView
+                                    android:id="@+id/mTvInfo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:ellipsize="end"
+                                    android:lines="1"
+                                    android:text="东方武侠 | 666万字 | 连载" />
+
+                                <TextView
+                                    android:id="@+id/mTvUpdated"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:ellipsize="end"
+                                    android:lines="1"
+                                    android:text="13小时前" />
+                            </LinearLayout>
                         </LinearLayout>
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#ddd" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/mTvFollower"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:lines="2"
+                            android:text="追书人数" />
+
+                        <TextView
+                            android:id="@+id/mTvRetentionRatio"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:lines="2"
+                            android:text="读者留存率" />
+
+                        <TextView
+                            android:id="@+id/mTvScore"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:gravity="center"
+                            android:lines="2"
+                            android:text="评分" />
+
                     </LinearLayout>
-                </RelativeLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#ddd" />
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:orientation="horizontal"
-                    >
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#ddd" />
+
+
+                    <com.ctetin.expandabletextviewlibrary.ExpandableTextView
+                        android:id="@+id/mEtv"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:lineSpacingExtra="4dp"
+                        android:textSize="14sp"
+                        app:ep_contract_text="收回"
+                        app:ep_expand_text="展开"
+                        app:ep_max_line="4"
+                        app:ep_need_always_showright="true"
+                        app:ep_need_animation="false"
+                        app:ep_need_contract="true"
+                        app:ep_need_expand="true"
+                        app:ep_need_link="false"
+                        app:ep_need_mention="false" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#ddd" />
+
+                    <LinearLayout
+                        android:id="@+id/mLlCatalog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="目录"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/content_size" />
+
+                        <TextView
+                            android:id="@+id/mTvLastChapter"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:ellipsize="end"
+                            android:lines="1"
+                            android:text="第xxx章" />
+
+                        <ImageView
+                            android:layout_width="@dimen/ic_size"
+                            android:layout_height="@dimen/ic_size"
+                            android:src="@drawable/ic_right" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:background="#ddd" />
+
 
                     <TextView
-                        android:id="@+id/mTvFollower"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="追书人数"
-                        android:gravity="center"
-                        android:lines="2"
-                        android:ellipsize="end"
-                        />
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="热门书评"
+                        android:textColor="@color/black" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/mRvReview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
                     <TextView
-                        android:id="@+id/mTvRetentionRatio"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="读者留存率"
+                        android:id="@+id/mTvAllReview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
                         android:gravity="center"
-                        android:lines="2"
-                        android:ellipsize="end"
-                        />
-
-                    <TextView
-                        android:id="@+id/mTvScore"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="评分"
-                        android:gravity="center"
-                        android:lines="2"
-                        android:ellipsize="end"
-                        />
-
+                        android:padding="15dp"
+                        android:text="查看全部评论"
+                        android:textColor="@color/black" />
                 </LinearLayout>
+            </android.support.v4.widget.NestedScrollView>
+
+            <LinearLayout
+                android:id="@+id/mLlHead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <View
+                    android:id="@+id/mTopView"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#ddd" />
+                    android:layout_height="0dp" />
 
-
-                <com.ctetin.expandabletextviewlibrary.ExpandableTextView
-                    android:id="@+id/mEtv"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:lineSpacingExtra="4dp"
-                    android:textSize="14sp"
-                    app:ep_contract_text="收回"
-                    app:ep_expand_text="展开"
-                    app:ep_max_line="4"
-                    app:ep_need_always_showright="true"
-                    app:ep_need_animation="false"
-                    app:ep_need_contract="true"
-                    app:ep_need_expand="true"
-                    app:ep_need_link="false"
-                    app:ep_need_mention="false"
-                    />
-
-                <View
+                <RelativeLayout
+                    android:id="@+id/mRlBar"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#ddd" />
-
-                <LinearLayout
-                    android:id="@+id/mLlCatalog"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="10dp"
-                    android:background="?android:attr/selectableItemBackground"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="目录"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/content_size"
-                        />
-
-                    <TextView
-                        android:id="@+id/mTvLastChapter"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:ellipsize="end"
-                        android:lines="1"
-                        android:text="第xxx章" />
+                    android:layout_height="?actionBarSize"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp">
 
                     <ImageView
+                        android:id="@+id/mIvBack"
                         android:layout_width="@dimen/ic_size"
                         android:layout_height="@dimen/ic_size"
-                        android:src="@drawable/ic_right" />
-                </LinearLayout>
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_back" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:background="#ddd" />
-
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="热门书评"
-                    android:textColor="@color/black"
-                    android:padding="10dp"
-                    />
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/mRvReview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/mTvAllReview"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:text="查看全部评论"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:background="?android:attr/selectableItemBackground"
-                    />
+                    <TextView
+                        android:id="@+id/mTvTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:alpha="0"
+                        android:gravity="center"
+                        android:text="书名"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/title_size" />
+                </RelativeLayout>
             </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+        </FrameLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#ddd" />
 
         <LinearLayout
-            android:id="@+id/mLlHead"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="?actionBarSize"
+            android:orientation="horizontal">
 
-            <View
-                android:id="@+id/mTopView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="加书架"
+                android:textColor="@color/link"
+                android:textSize="@dimen/bookshelf_name" />
 
-            <RelativeLayout
-                android:id="@+id/mRlBar"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/link"
+                android:gravity="center"
+                android:text="开始阅读"
+                android:textColor="@color/white"
+                android:textSize="@dimen/bookshelf_name" />
 
-                <ImageView
-                    android:id="@+id/mIvBack"
-                    android:layout_width="@dimen/ic_size"
-                    android:layout_height="@dimen/ic_size"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_back" />
-
-                <TextView
-                    android:id="@+id/mTvTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:alpha="0"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:text="书名"
-                    android:textSize="@dimen/title_size" />
-            </RelativeLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="下载"
+                android:textColor="@color/link"
+                android:textSize="@dimen/bookshelf_name" />
         </LinearLayout>
-    </FrameLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#ddd" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="加书架"
-            android:textColor="@color/link"
-            android:textSize="@dimen/bookshelf_name" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/link"
-            android:gravity="center"
-            android:text="开始阅读"
-            android:textColor="@color/white"
-            android:textSize="@dimen/bookshelf_name" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="下载"
-            android:textColor="@color/link"
-            android:textSize="@dimen/bookshelf_name" />
     </LinearLayout>
-</LinearLayout>
+</com.kermitye.bookmaster.ui.widget.StateLayout>

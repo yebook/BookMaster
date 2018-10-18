@@ -44,7 +44,7 @@ dependencies {
     implementation 'me.gujun.android.taggroup:library:1.4@aar'
 
     implementation "com.jakewharton.rxbinding2:rxbinding:$rxbinding_version"
-
     implementation 'com.github.MZCretin:ExpandableTextView:v1.5.1'
+    implementation 'com.simplecityapps:recyclerview-fastscroll:1.0.18'
 
 }
