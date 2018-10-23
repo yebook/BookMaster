@@ -11,6 +11,10 @@ import android.view.animation.Animation
 import me.yokeyword.fragmentation.ExtraTransaction
 import me.yokeyword.fragmentation.SupportFragmentDelegate
 import android.support.v4.app.FragmentActivity
+import com.kermitye.baselib.mvp.BasePresenter
+import com.kermitye.baselib.mvp.MvpActivity
+import com.kermitye.baselib.mvp.MvpFragment
+import com.kermitye.bookmaster.ui.widget.MsgDialog
 
 
 /**
@@ -18,5 +22,7 @@ import android.support.v4.app.FragmentActivity
  * Date: 2018/9/21 16:24
  * Desc:
  */
-open class BaseFragment : LibBaseFragment() {
+abstract class BaseFragment<P: BasePresenter<*, *>> : MvpFragment<P>() {
+    val mMsgDialog by lazy { MsgDialog.newInstance(fragmentManager!!) }
+
 }

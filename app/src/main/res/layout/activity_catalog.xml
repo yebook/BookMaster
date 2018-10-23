@@ -37,7 +37,23 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/content_size" />
         </FrameLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/mTab"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            app:tabGravity="fill"
+            app:tabMode="scrollable"
+            app:tabIndicatorColor="@color/tab_indicator_color"
+            app:tabSelectedTextColor="@color/tab_selected_color"
+            app:tabTextColor="@color/tab_txt_color"
+            />
+
     </android.support.design.widget.AppBarLayout>
+
 
     <com.kermitye.bookmaster.ui.widget.StateLayout
         android:id="@+id/mSl"
@@ -49,8 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dp"
-            app:fastScrollThumbColor="@color/themColor"
-            />
+            app:fastScrollThumbColor="@color/themColor" />
     </com.kermitye.bookmaster.ui.widget.StateLayout>
 
 </LinearLayout>

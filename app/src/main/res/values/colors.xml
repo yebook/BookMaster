@@ -7,6 +7,7 @@
     <color name="themColor">#00b0ff</color>
     <color name="themColor_press">#7700b0ff</color>
     <color name="title_color">#000</color>
+    <color name="gray">#aaa</color>
 
     <color name="tab_indicator_color">#fff</color>
     <color name="tab_selected_color">#fff</color>

@@ -1,12 +1,15 @@
 package com.kermitye.bookmaster.ui.activity
 
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
+import com.kermitye.baselib.ext.setVisible
 import com.kermitye.baselib.mvp.MvpActivity
 import com.kermitye.bookmaster.R
 import com.kermitye.bookmaster.adapter.CatalogAdapter
 import com.kermitye.bookmaster.contract.CatalogContract
+import com.kermitye.bookmaster.model.bean.AtocSourceBean
 import com.kermitye.bookmaster.model.bean.Chapter
 import com.kermitye.bookmaster.presenter.CatalogPresenterImpl
 import com.kermitye.bookmaster.ui.widget.StateLayout
@@ -30,7 +33,6 @@ class CatalogActivity : MvpActivity<CatalogPresenterImpl>(), CatalogContract.ICa
 
     override fun attachMV() = mPresenter.attachMV(this)
 
-
     fun initView() {
         mIvBack.setOnClickListener { onBackPressedSupport() }
         mSl.setConfig(StateLayout.StateLayoutConfig.newInstance()
@@ -42,6 +44,19 @@ class CatalogActivity : MvpActivity<CatalogPresenterImpl>(), CatalogContract.ICa
         mRvCatalog.layoutManager = LinearLayoutManager(this)
         mRvCatalog.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         mRvCatalog.adapter = mAdapter
+
+        mTab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                mSl.showView(StateLayout.TYPE_LOADING)
+                mPresenter.getDataBySourceId(tab?.position ?: 0)
+            }
+        })
 
         var bookId = intent.getStringExtra("id")
         if (bookId.isNullOrEmpty()) {
@@ -59,6 +74,12 @@ class CatalogActivity : MvpActivity<CatalogPresenterImpl>(), CatalogContract.ICa
         mChapter.clear()
         mChapter.addAll(data)
         mAdapter.notifyDataSetChanged()
+    }
+
+    override fun updateBookSource(data: List<AtocSourceBean>) {
+        mTab.removeAllTabs()
+        mTab.setVisible(!data.isEmpty())
+        data.forEach { mTab.addTab(mTab.newTab().setText(it.name)) }
     }
 
 }

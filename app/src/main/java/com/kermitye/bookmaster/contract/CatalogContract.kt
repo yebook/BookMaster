@@ -3,6 +3,7 @@ package com.kermitye.bookmaster.contract
 import com.kermitye.baselib.mvp.BasePresenter
 import com.kermitye.baselib.mvp.IBaseModel
 import com.kermitye.baselib.mvp.IBaseView
+import com.kermitye.bookmaster.model.CatalogModel
 import com.kermitye.bookmaster.model.bean.AtocBean
 import com.kermitye.bookmaster.model.bean.AtocSourceBean
 import com.kermitye.bookmaster.model.bean.Chapter
@@ -14,7 +15,7 @@ import io.reactivex.Observer
  */
 interface CatalogContract {
 
-    abstract class CatalogPresenter : BasePresenter<ICatalogModel, ICatalogView>()
+    abstract class CatalogPresenter : BasePresenter<CatalogModel, ICatalogView>()
 
     interface ICatalogModel : IBaseModel {
         fun getCatalog(sourceId: String): Observable<AtocBean>
@@ -24,6 +25,7 @@ interface CatalogContract {
 
     interface ICatalogView : IBaseView {
         fun updateData(data: List<Chapter>)
+        fun updateBookSource(data: List<AtocSourceBean>)
     }
 
 }

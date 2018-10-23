@@ -5,4 +5,6 @@
     <dimen name="hint_txt">12sp</dimen>
     <dimen name="ic_size">30dp</dimen>
     <dimen name="content_size">18sp</dimen>
+    <dimen name="dialog_title">16sp</dimen>
+    <dimen name="dialog_content">14sp</dimen>
 </resources>

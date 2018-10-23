@@ -21,11 +21,12 @@ class CatalogPresenterImpl : CatalogContract.CatalogPresenter() {
     override fun onStart() {
     }
 
-    override fun getModel(): CatalogContract.ICatalogModel = CatalogModel.newInstance()
+    override fun getModel(): CatalogModel = CatalogModel.newInstance()
 
     fun getData(bookId: String) {
         mModel?.getData(bookId)?.excute(object : HttpObserver<AtocBean>() {
             override fun onSuccess(t: AtocBean?) {
+                mView?.updateBookSource(mModel?.mSource ?: arrayListOf())
                 t?.let { mView?.updateData(t.chapters ?: arrayListOf()) }
             }
 
@@ -33,6 +34,24 @@ class CatalogPresenterImpl : CatalogContract.CatalogPresenter() {
                 LogUtil.e("getData error: ${e.message}")
             }
         })
+    }
+
+    fun getDataBySourceId(position: Int) {
+        mModel?.let {
+            if (it.mSource.isEmpty()) {
+                mView?.updateData(arrayListOf())
+                return
+            }
+            var sourceId = it.mSource.get(position)._id
+            it.getCatalog(sourceId).excute(object : HttpObserver<AtocBean>() {
+                override fun onSuccess(t: AtocBean?) {
+                    t?.let { mView?.updateData(t.chapters ?: arrayListOf()) }
+                }
+                override fun onError(code: Int, msg: String?) {
+                    mView?.updateData(arrayListOf())
+                }
+            })
+        }
     }
 
 
