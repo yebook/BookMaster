@@ -1,5 +1,7 @@
 package com.kermitye.baselib.mvp
 
+import android.view.View
+
 /**
  * Created by kermitye
  * Date: 2018/8/28 18:12
