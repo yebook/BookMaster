@@ -19,11 +19,10 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setView(R.layout.activity_splash)
         mImmersionBar?.let { it.hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR).init() }  //隐藏导航栏
-        var disposable = Observable.timer(3, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe {
+        var disposable = Observable.timer(1, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe {
             startActivity<MainActivity>()
             finish()
         }
-
 
         /*mTvJump.setOnClickListener {
             if (!disposable.isDisposed)

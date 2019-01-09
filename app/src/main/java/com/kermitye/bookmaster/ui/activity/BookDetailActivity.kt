@@ -57,7 +57,7 @@ class BookDetailActivity : MvpActivity<BookDetailPresenterImpl>(), BookDetailCon
                 .setEmptyLayout(R.layout.layout_empty)
                 .setErrorLayout(R.layout.layout_error)
                 .setLoadingLayout(R.layout.layout_loading))
-        mSl.showView(StateLayout.TYPE_LOADING)
+//        mSl.showView(StateLayout.TYPE_LOADING)
         bookId = intent.getStringExtra("id")
         if (bookId.isNullOrEmpty()) {
             toast("获取书籍错误")
@@ -106,7 +106,7 @@ class BookDetailActivity : MvpActivity<BookDetailPresenterImpl>(), BookDetailCon
 
     override fun updateData(data: BookDetailBean?) {
         if(data != null) {
-            mSl.showView(StateLayout.TYPE_CONTENT)
+//            mSl.showView(StateLayout.TYPE_CONTENT)
             mTvTitle.text = data.title
             mTvBookName.text = data.title
             mTvAuthor.text = data.author
@@ -117,6 +117,7 @@ class BookDetailActivity : MvpActivity<BookDetailPresenterImpl>(), BookDetailCon
                 var url = data.cover.substring(7, data.cover.length)
                 url = url.replace("%2F", "/").replace("%3A", ":")
                 ImageManager.displayImage(url, mIvBookHead)
+//                Glide.with(this@BookDetailActivity).load(url).into(mIvBookHead)
                 ImageManager.displayImageToBlur(url, mIvBookHeadBg)
                 Glide.with(MyApp.instance)
                         .asBitmap()

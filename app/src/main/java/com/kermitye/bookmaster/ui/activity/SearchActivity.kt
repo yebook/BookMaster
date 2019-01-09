@@ -1,6 +1,8 @@
 package com.kermitye.bookmaster.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -18,6 +20,7 @@ import com.kermitye.bookmaster.presenter.SearchPresenterImpl
 import com.kermitye.bookmaster.util.SpUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_search.*
+import kotlinx.android.synthetic.main.item_search_books.view.*
 import kotlinx.android.synthetic.main.layout_auto_complete.*
 import kotlinx.android.synthetic.main.layout_hot_search.*
 import kotlinx.android.synthetic.main.layout_search_list.*
@@ -80,7 +83,6 @@ class SearchActivity : MvpActivity<SearchPresenterImpl>(), SearchContract.ISearc
             search()
         }
 
-
         mRvSearchHistory.layoutManager = LinearLayoutManager(this)
         mRvSearchHistory.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         mRvSearchHistory.adapter = mKeyHistoryAdapter
@@ -96,7 +98,13 @@ class SearchActivity : MvpActivity<SearchPresenterImpl>(), SearchContract.ISearc
         mRvSearchBooks.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         mRvSearchBooks.adapter = mSearchBooksAdapter
         mSearchBooksAdapter.setOnItemClickListener { adapter, view, position ->
-            startActivity<BookDetailActivity>("id" to mSearchBooks.get(position)._id)
+
+            var intent = Intent(this@SearchActivity, BookDetailActivity::class.java)
+            intent.putExtra("id", mSearchBooks.get(position)._id)
+            var options = ActivityOptionsCompat
+                    .makeSceneTransitionAnimation(this@SearchActivity, view.mIvCover, getString(R.string.transition_book_img))
+            startActivity(intent, options.toBundle())
+//            startActivity<BookDetailActivity>("id" to mSearchBooks.get(position)._id)
         }
 
         RxTextView.textChanges(mEtKeyWord)

@@ -76,7 +76,9 @@ class RankingFragment : MvpFragment<RankingPresenterImpl>(), RankingContract.IRa
     override fun updateData(data: List<Male>) {
         mRankings.clear()
         mRankings.addAll(data)
+        //        mRankingAdapter.setNewData(data)
         mRankingAdapter.notifyDataSetChanged()
+
         if (mRankings.size == 0) {
             mSl.showView(StateLayout.TYPE_EMPTY)
         } else {

@@ -19,12 +19,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="8dp"
+            android:padding="10dp"
             android:text="标题"
             android:lines="1"
             android:singleLine="true"
             android:ellipsize="end"
-            android:textColor="@android:color/holo_red_light"
+            android:textColor="@color/black"
             android:textSize="@dimen/content_size" />
 
         <View
@@ -45,9 +45,10 @@
         android:id="@+id/mTvCancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
+        android:padding="10dp"
         android:gravity="center"
         android:text="取消"
+        android:textColor="@color/red"
         android:background="@drawable/dialog_bg"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"

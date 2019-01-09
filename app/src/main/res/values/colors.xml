@@ -17,4 +17,5 @@
     <color name="white">@android:color/white</color>
     <color name="link">#7700b0ff</color>
     <color name="read.menu.bg">#191919</color>
+    <color name="red">#FF0000</color>
 </resources>

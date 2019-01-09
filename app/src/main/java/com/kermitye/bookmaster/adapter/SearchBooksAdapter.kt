@@ -1,8 +1,10 @@
 package com.kermitye.bookmaster.adapter
 
+import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.kermitye.baselib.util.LogUtil
+import com.kermitye.bookmaster.MyApp
 import com.kermitye.bookmaster.R
 import com.kermitye.bookmaster.manager.ImageManager
 import com.kermitye.bookmaster.model.bean.SearchBook
