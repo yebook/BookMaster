@@ -60,14 +60,11 @@ class PageView @kotlin.jvm.JvmOverloads constructor(context: Context, attrs: Att
     }
 
 
-
-
     interface TouchListener {
         fun onTouch(): Boolean
         fun center()
         fun prePage()
         fun nextPage()
         fun cancel()
-
     }
 }

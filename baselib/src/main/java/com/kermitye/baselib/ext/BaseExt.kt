@@ -1,5 +1,7 @@
 package com.kermitye.baselib.ext
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleOwner
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.Preference
@@ -14,6 +16,7 @@ import com.kermitye.baselib.net.BaseConvert
 import com.kermitye.baselib.net.BaseResp
 import com.kermitye.baselib.net.HttpObserver
 import com.trello.rxlifecycle2.LifecycleProvider
+import com.trello.rxlifecycle2.android.lifecycle.kotlin.bindUntilEvent
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -33,12 +36,19 @@ object BaseExt {
 
 //---------------------------RX EXT-------------------------------------------
 
-fun <T> Observable<T>.excute(subscriber: HttpObserver<T>, lifecycleProvider: LifecycleProvider<*>? = null) = apply {
+fun <T> Observable<T>.excute(subscriber: HttpObserver<T>) = apply {
     this.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+//            .bindUntilEvent(lifecycleOwner, Lifecycle.Event.ON_DESTROY)
 //            .compose(lifecycleProvider.bindToLifecycle())
             .subscribe(subscriber)
+}
 
+fun <T> Observable<T>.bindLife(owner: LifecycleOwner?, event: Lifecycle.Event = Lifecycle.Event.ON_DESTROY) = apply {
+    if (owner != null)
+        this.bindUntilEvent(owner, event)
+    else
+        this
 }
 
 /*

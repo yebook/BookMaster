@@ -7,6 +7,7 @@ import com.kermitye.baselib.util.LogUtil
 import com.kermitye.bookmaster.contract.CatalogContract
 import com.kermitye.bookmaster.model.CatalogModel
 import com.kermitye.bookmaster.model.bean.AtocBean
+import com.trello.rxlifecycle2.android.lifecycle.kotlin.bindUntilEvent
 import io.reactivex.Observable
 
 /**

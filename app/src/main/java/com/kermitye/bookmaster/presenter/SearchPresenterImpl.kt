@@ -1,12 +1,18 @@
 package com.kermitye.bookmaster.presenter
 
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleOwner
+import com.kermitye.baselib.ext.bindLife
 import com.kermitye.baselib.ext.excute
 import com.kermitye.baselib.net.HttpObserver
+import com.kermitye.baselib.util.LogUtil
 import com.kermitye.bookmaster.contract.SearchContract
 import com.kermitye.bookmaster.model.SearchModel
 import com.kermitye.bookmaster.model.bean.HotWordBean
 import com.kermitye.bookmaster.model.bean.KeyWordsBean
 import com.kermitye.bookmaster.model.bean.SearchBooksBean
+import com.trello.rxlifecycle2.android.lifecycle.kotlin.bindToLifecycle
+import com.trello.rxlifecycle2.android.lifecycle.kotlin.bindUntilEvent
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -29,7 +35,7 @@ class SearchPresenterImpl : SearchContract.SearchPresenter() {
     }
 
     fun getHotWord() {
-        mModel?.getHotWord()?.excute(object : HttpObserver<HotWordBean>() {
+        mModel?.getHotWord()?.bindLife(mOwner, Lifecycle.Event.ON_STOP)?.excute(object : HttpObserver<HotWordBean>() {
             override fun onSuccess(t: HotWordBean?) {
                 t?.let {
                     mView?.updateHotWord(it.hotWords)
@@ -68,7 +74,6 @@ class SearchPresenterImpl : SearchContract.SearchPresenter() {
             override fun onSuccess(t: SearchBooksBean?) {
                 t?.let { mView?.updateSearchBooks(it.books ?: arrayListOf()) }
             }
-
             override fun onError(code: Int, msg: String?) {
             }
         })

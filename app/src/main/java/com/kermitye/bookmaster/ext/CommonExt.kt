@@ -1,10 +1,13 @@
 package com.kermitye.bookmaster.ext
 
 import android.graphics.Color
+import android.support.annotation.Nullable
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.RequestOptions
+import com.kermitye.bookmaster.ui.widget.StateLayout
 
 /**
  * Created by kermitye on 2018/10/8 16:17

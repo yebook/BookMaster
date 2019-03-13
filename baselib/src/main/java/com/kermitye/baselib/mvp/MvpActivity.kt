@@ -26,6 +26,7 @@ abstract class MvpActivity<P: BasePresenter<*, *>> : BaseActivity(), IBaseView {
 
     fun bindMV() {
         mPresenter = initPresenter()
+        lifecycle.addObserver(mPresenter)
         attachMV()
     }
 
